@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>शिवसह्याद्री महानाट्य | ShivSahyadri Mahanatya</title>
+  <meta name="description" content="शिवसह्याद्री महानाट्य – छत्रपती शिवाजी महाराजांचा गौरवशाली इतिहास भव्य महानाट्याच्या स्वरूपात." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bhagwa: '#FF4D00',
+            saffron: '#FF9933',
+            gold: '#C9A227',
+            maroon: '#8B0000',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bhagwa: #FF4D00;
+      --saffron: #FF9933;
+      --gold: #C9A227;
+      --bg: #0F0F0F;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--bhagwa); }
+    ::-webkit-scrollbar-track { background: #111; }
+
+    /* ══════════════════════════════════════
+       CINEMATIC INTRO
+    ══════════════════════════════════════ */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #intro.fade-out {
+      animation: introFadeOut 1.2s ease-in-out forwards;
+    }
+
+    @keyframes introFadeOut {
+      to { opacity: 0; pointer-events: none; }
+    }
+
+    /* Fort bg in intro */
+    #intro-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('SHINSAHYADRI_MAHANATYA_DPGFILMD-Cover.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: blur(2px) brightness(0.25);
+      transform: scale(1.08);
+      animation: introBgZoom 7s ease-out forwards;
+    }
+
+    @keyframes introBgZoom {
+      from { transform: scale(1.12); }
+      to   { transform: scale(1.0); }
+    }
+
+    /* Fog overlay */
+    #intro-fog {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 120% 60% at 50% 100%, rgba(255,77,0,0.08) 0%, transparent 60%);
+      animation: fogPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes fogPulse {
+      0%,100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Intro particles canvas */
+    #intro-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Top line accent */
+    #intro-top-line {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #FF4D00, #FF9933, #FF4D00, transparent);
+      animation: lineReveal 2s ease-out 0.5s both;
+    }
+
+    @keyframes lineReveal {
+      from { opacity: 0; transform: scaleX(0); }
+      to   { opacity: 1; transform: scaleX(1); }
+    }
+
+    /* Intro center content */
+    #intro-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    #intro-ornament {
+      font-size: 1.5rem;
+      color: #FF9933;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s both;
+      letter-spacing: 0.5em;
+      margin-bottom: 1rem;
+    }
+
+    #intro-sub {
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,153,51,0.8);
+      opacity: 0;
+      animation: fadeUp 1s ease 1s both;
+      margin-bottom: 1.5rem;
+    }
+
+    #intro-title {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      opacity: 0;
+      animation: titleReveal 1.5s ease 1.3s both;
+      text-shadow: 0 0 60px rgba(255,77,0,0.6), 0 0 120px rgba(255,153,51,0.3);
+    }
+
+    #intro-title .line1 { color: #fff; display: block; }
+    #intro-title .line2 {
+      display: block;
+      background: linear-gradient(135deg, #FF4D00, #FF9933, #C9A227);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #intro-tagline {
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      color: rgba(255,255,255,0.55);
+      opacity: 0;
+      animation: fadeUp 1s ease 2.2s both;
+      margin-top: 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    #intro-divider {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #FF4D00, transparent);
+      margin: 1.5rem auto;
+      animation: expandWidth 1s ease 2s both;
+    }
+
+    @keyframes expandWidth {
+      to { width: 200px; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes titleReveal {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Skip button */
+    #skip-btn {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      z-index: 10;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      padding: 0.5rem 1.2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s both;
+    }
+
+    #skip-btn:hover {
+      background: rgba(255,77,0,0.2);
+      border-color: rgba(255,77,0,0.4);
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════
+       MAIN SITE
+    ══════════════════════════════════════ */
+    #site { opacity: 0; transition: opacity 1.2s ease; }
+    #site.visible { opacity: 1; }
+
+    /* Noise overlay */
+    #site::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.35;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      transition: background 0.4s, padding 0.4s, border-color 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(15,15,15,0.95) !important;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,77,0,0.15);
+      padding-top: 0.75rem !important;
+      padding-bottom: 0.75rem !important;
+    }
+
+    /* ── HERO ── */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('SHINSAHYADRI_MAHANATYA_DPGFILMD-Cover.jpg');
+      background-size: cover;
+      background-position: center 25%;
+      transform: scale(1.03);
+      transition: transform 8s ease-out;
+    }
+
+    .hero-bg.loaded { transform: scale(1.0); }
+
+    /* ── PANEL CARDS ── */
+    .panel-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(255,77,0,0.18);
+      cursor: default;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .panel-card:hover {
+      transform: scale(1.035) translateY(-4px);
+      box-shadow: 0 20px 60px rgba(255,77,0,0.25), 0 0 0 1px rgba(255,77,0,0.4);
+      border-color: rgba(255,77,0,0.5);
+    }
+
+    .panel-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('SHINSAHYADRI_MAHANATYA_DPGFILMD-Cover.jpg');
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .panel-card:hover .panel-bg {
+      transform: scale(1.06);
+    }
+
+    .panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(15,15,15,0.82) 0%, rgba(139,0,0,0.5) 60%, rgba(255,77,0,0.15) 100%);
+      transition: opacity 0.35s;
+    }
+
+    .panel-card:hover .panel-overlay {
+      background: linear-gradient(160deg, rgba(15,15,15,0.75) 0%, rgba(139,0,0,0.45) 60%, rgba(255,77,0,0.25) 100%);
+    }
+
+    /* ── BUTTONS ── */
+    .btn-bhagwa {
+      background: linear-gradient(135deg, #FF4D00, #FF9933);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-bhagwa::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-bhagwa:hover::before { left: 100%; }
+    .btn-bhagwa:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 40px rgba(255,77,0,0.55);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,77,0,0.6);
+      color: #FF9933;
+      background: rgba(255,77,0,0.08);
+    }
+
+    /* ── VIDEO CARD ── */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #111;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,77,0,0.2);
+      transition: box-shadow 0.35s, border-color 0.35s;
+    }
+
+    .video-wrap:hover {
+      box-shadow: 0 12px 50px rgba(255,77,0,0.2);
+      border-color: rgba(255,77,0,0.45);
+    }
+
+    .video-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    /* Custom video controls overlay */
+    .video-controls {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem 1.25rem 1.1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.75));
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .video-wrap:hover .video-controls { opacity: 1; }
+
+    .vc-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif;
+      white-space: nowrap;
+    }
+
+    .vc-btn:hover { background: rgba(255,77,0,0.4); }
+
+    .vc-progress {
+      flex: 1;
+      height: 3px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .vc-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FF4D00, #FF9933);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.5s linear;
+      pointer-events: none;
+    }
+
+    .vc-time {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── GOALS CARD ── */
+    .goal-card {
+      border: 1px solid rgba(255,77,0,0.15);
+      border-radius: 12px;
+      background: rgba(26,26,26,0.8);
+      padding: 1.75rem;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .goal-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #FF4D00, #FF9933);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .goal-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,77,0,0.45);
+      box-shadow: 0 16px 50px rgba(255,77,0,0.12);
+    }
+
+    .goal-card:hover::before { opacity: 1; }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.delay-1 { transition-delay: 0.1s; }
+    .reveal.delay-2 { transition-delay: 0.2s; }
+    .reveal.delay-3 { transition-delay: 0.3s; }
+    .reveal.delay-4 { transition-delay: 0.4s; }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,77,0,0.4), transparent);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marqueeScroll 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── YOUTUBE PANEL ── */
+    .yt-panel {
+      background: linear-gradient(135deg, rgba(255,77,0,0.08), rgba(139,0,0,0.12), rgba(255,153,51,0.06));
+      border: 1px solid rgba(255,77,0,0.25);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .yt-panel::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(255,77,0,0.3), transparent, rgba(255,153,51,0.2));
+      border-radius: 20px;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      -webkit-mask-composite: destination-out;
+      pointer-events: none;
+    }
+
+    /* ── FONT HELPERS ── */
+    .font-royal { font-family: 'Playfair Display', serif; }
+    .font-marathi { font-family: 'Tiro Devanagari Sanskrit', serif; }
+    .font-body { font-family: 'DM Sans', sans-serif; }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #FF4D00, #FF9933, #C9A227);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    @media (max-width: 768px) {
+      .panel-card:hover { transform: scale(1.02) translateY(-2px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     CINEMATIC INTRO
+══════════════════════════════════════════════════ -->
+<div id="intro">
+  <div id="intro-top-line"></div>
+  <div id="intro-bg"></div>
+  <div id="intro-fog"></div>
+  <canvas id="intro-canvas"></canvas>
+
+  <button id="skip-btn" onclick="skipIntro()">वगळा ✕</button>
+
+  <div id="intro-content">
+    <div id="intro-ornament">✦ ⚔ ✦</div>
+    <div id="intro-sub">सांस्कृतिक महाचळवळ</div>
+    <h1 id="intro-title">
+      <span class="line1">शिवसह्याद्री</span>
+      <span class="line2">महानाट्य</span>
+    </h1>
+    <div id="intro-divider"></div>
+    <p id="intro-tagline">
+      छत्रपती शिवाजी महाराजांचा गौरवशाली इतिहास<br>भव्य महानाट्याच्या स्वरूपात
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MAIN SITE
+══════════════════════════════════════════════════ -->
+<div id="site">
+
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-5 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#hero" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 rounded-full border-2 border-bhagwa flex items-center justify-center" style="border-color:#FF4D00">
+        <span style="color:#FF9933;font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;">श</span>
+      </div>
+      <div>
+        <span class="block font-royal text-white text-base leading-tight">ShivSahyadri</span>
+        <span class="block text-xs tracking-widest" style="color:#FF9933">MAHANATYA</span>
+      </div>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#about" class="text-white/65 hover:text-white text-sm font-medium transition-colors relative group">
+        आमच्याबद्दल
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-bhagwa group-hover:w-full transition-all duration-300" style="background:#FF4D00"></span>
+      </a>
+      <a href="#vision" class="text-white/65 hover:text-white text-sm font-medium transition-colors relative group">
+        ध्येय
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-bhagwa group-hover:w-full transition-all duration-300" style="background:#FF4D00"></span>
+      </a>
+      <a href="#gallery" class="text-white/65 hover:text-white text-sm font-medium transition-colors relative group">
+        गॅलरी
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-bhagwa group-hover:w-full transition-all duration-300" style="background:#FF4D00"></span>
+      </a>
+      <a href="#video" class="text-white/65 hover:text-white text-sm font-medium transition-colors relative group">
+        व्हिडिओ
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-bhagwa group-hover:w-full transition-all duration-300" style="background:#FF4D00"></span>
+      </a>
+      <a href="#contact" class="text-white/65 hover:text-white text-sm font-medium transition-colors relative group">
+        संपर्क
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-bhagwa group-hover:w-full transition-all duration-300" style="background:#FF4D00"></span>
+      </a>
+    </div>
+
+    <!-- YouTube CTA -->
+    <div class="hidden md:flex items-center gap-3">
+      <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+         class="btn-bhagwa flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+        YouTube वर पहा
+      </a>
+    </div>
+
+    <!-- Hamburger -->
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('open')"
+            class="md:hidden text-white p-2">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed top-[68px] left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10 px-6 py-6">
+    <div class="flex flex-col gap-4">
+      <a href="#about" onclick="document.getElementById('mobile-menu').classList.remove('open')" class="text-white/80 hover:text-white text-base">आमच्याबद्दल</a>
+      <a href="#vision" onclick="document.getElementById('mobile-menu').classList.remove('open')" class="text-white/80 hover:text-white text-base">ध्येय</a>
+      <a href="#gallery" onclick="document.getElementById('mobile-menu').classList.remove('open')" class="text-white/80 hover:text-white text-base">गॅलरी</a>
+      <a href="#video" onclick="document.getElementById('mobile-menu').classList.remove('open')" class="text-white/80 hover:text-white text-base">व्हिडिओ</a>
+      <a href="#contact" onclick="document.getElementById('mobile-menu').classList.remove('open')" class="text-white/80 hover:text-white text-base">संपर्क</a>
+      <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+         class="btn-bhagwa flex items-center justify-center gap-2 px-5 py-3 rounded-sm text-sm mt-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        YouTube वर पहा
+      </a>
+    </div>
+  </div>
+
+  <!-- ── HERO SECTION ── -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="hero-bg" id="hero-bg"></div>
+    <!-- Overlays -->
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(15,15,15,0.65) 0%, rgba(15,15,15,0.5) 40%, rgba(15,15,15,0.85) 90%, rgba(15,15,15,1) 100%)"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(255,77,0,0.08) 0%, transparent 70%)"></div>
+
+    <!-- Canvas particles -->
+    <canvas id="hero-canvas" class="absolute inset-0 pointer-events-none"></canvas>
+
+    <!-- Content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 border px-4 py-1.5 mb-8 text-xs tracking-widest uppercase"
+           style="background:rgba(255,77,0,0.1);border-color:rgba(255,77,0,0.3);color:#FF9933;border-radius:2px">
+        ✦ सांस्कृतिक महाचळवळ ✦
+      </div>
+
+      <h1 class="font-marathi font-bold text-white leading-tight mb-3"
+          style="font-size:clamp(3rem,10vw,7rem);text-shadow:0 0 60px rgba(255,77,0,0.35)">
+        शिवसह्याद्री
+      </h1>
+      <h2 class="font-royal font-bold text-gradient mb-6"
+          style="font-size:clamp(2rem,6vw,4.5rem)">
+        महानाट्य
+      </h2>
+
+      <!-- Divider -->
+      <div class="section-divider max-w-xs mx-auto mb-8">
+        <span style="color:#FF4D00;font-size:1.25rem">⚔</span>
+      </div>
+
+      <p class="font-marathi text-white/70 mb-2" style="font-size:clamp(1rem,2.5vw,1.25rem);line-height:1.9">
+        छत्रपती शिवाजी महाराजांचा गौरवशाली इतिहास
+      </p>
+      <p class="font-marathi mb-10" style="font-size:clamp(0.95rem,2vw,1.1rem);color:#FF9933;line-height:1.9">
+        भव्य महानाट्याच्या स्वरूपात जिवंत करणे
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+           class="btn-bhagwa flex items-center gap-2.5 px-8 py-4 rounded-sm text-base w-full sm:w-auto justify-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube वर पहा
+        </a>
+        <a href="#about"
+           class="btn-outline flex items-center gap-2 px-8 py-4 rounded-sm text-base w-full sm:w-auto justify-center">
+          अधिक जाणून घ्या ↓
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <svg class="text-bhagwa animate-bounce" width="20" height="20" fill="none" stroke="#FF4D00" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      <div class="w-px h-12" style="background:linear-gradient(to bottom,#FF4D00,transparent)"></div>
+    </div>
+  </section>
+
+  <!-- ── MARQUEE ── -->
+  <div class="py-4 overflow-hidden border-y" style="border-color:rgba(255,77,0,0.12);background:rgba(255,77,0,0.04)">
+    <div class="marquee-track font-body text-sm tracking-widest" style="color:rgba(255,153,51,0.6)">
+      <span>✦ जय शिवाजी</span><span>✦ जय भवानी</span><span>✦ मराठा वारसा</span>
+      <span>✦ छत्रपती शिवाजी महाराज</span><span>✦ शिवसह्याद्री महानाट्य</span>
+      <span>✦ अ‍ॅड. विनय दाभाडे</span><span>✦ सांस्कृतिक चळवळ</span>
+      <!-- duplicate for seamless loop -->
+      <span>✦ जय शिवाजी</span><span>✦ जय भवानी</span><span>✦ मराठा वारसा</span>
+      <span>✦ छत्रपती शिवाजी महाराज</span><span>✦ शिवसह्याद्री महानाट्य</span>
+      <span>✦ अ‍ॅड. विनय दाभाडे</span><span>✦ सांस्कृतिक चळवळ</span>
+    </div>
+  </div>
+
+  <!-- ── ABOUT SECTION ── -->
+  <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <p class="text-xs tracking-widest uppercase mb-3" style="color:#FF9933">✦ &nbsp; आमच्याबद्दल &nbsp; ✦</p>
+      <h2 class="font-royal text-white font-bold mb-4" style="font-size:clamp(2rem,5vw,3.5rem)">शिवसह्याद्री महानाट्य</h2>
+      <div class="h-px w-24 mx-auto" style="background:linear-gradient(90deg,transparent,#FF4D00,transparent)"></div>
+    </div>
+
+    <!-- PANEL CARDS with cover image background -->
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Big featured panel -->
+      <div class="panel-card reveal delay-1 md:row-span-2" style="min-height:420px">
+        <div class="panel-bg"></div>
+        <div class="panel-overlay"></div>
+        <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-end" style="min-height:420px">
+          <div class="mb-4">
+            <div class="inline-block px-3 py-1 text-xs tracking-widest uppercase mb-3 rounded"
+                 style="background:rgba(255,77,0,0.25);color:#FF9933;border:1px solid rgba(255,77,0,0.35)">
+              संस्थेबद्दल
+            </div>
+            <h3 class="font-marathi font-bold text-white text-2xl mb-4" style="line-height:1.5">
+              शिवसह्याद्री महानाट्य
+            </h3>
+            <p class="font-marathi text-white/80 leading-loose">
+              ही <span style="color:#FF9933;font-weight:600">अ‍ॅड. विनय दाभाडे</span> यांनी स्थापन केलेली एक भव्य सांस्कृतिक आणि ऐतिहासिक संस्था आहे. छत्रपती शिवाजी महाराजांचा गौरवशाली इतिहास आणि मराठेशाहीचा अतुलनीय वारसा एका भव्य 'महानाट्या'च्या स्वरूपात आजच्या पिढीसमोर जिवंत करणे, हा या संस्थेचा मुख्य उद्देश आहे.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat card 1 -->
+      <div class="panel-card reveal delay-2" style="min-height:195px">
+        <div class="panel-bg" style="background-position:center 60%"></div>
+        <div class="panel-overlay"></div>
+        <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between" style="min-height:195px">
+          <div class="w-10 h-10 border flex items-center justify-center text-xl"
+               style="border-color:rgba(255,77,0,0.4);color:#FF4D00">⚔</div>
+          <div>
+            <h3 class="font-marathi text-white font-bold text-xl mb-2">ऐतिहासिक सादरीकरण</h3>
+            <p class="font-marathi text-white/60 text-sm leading-relaxed">मराठा साम्राज्याचा पराक्रम भव्य महानाट्याद्वारे.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat card 2 -->
+      <div class="panel-card reveal delay-3" style="min-height:195px">
+        <div class="panel-bg" style="background-position:center 80%"></div>
+        <div class="panel-overlay"></div>
+        <div class="relative z-10 p-8 md:p-10 h-full flex flex-col justify-between" style="min-height:195px">
+          <div class="w-10 h-10 border flex items-center justify-center text-xl"
+               style="border-color:rgba(255,77,0,0.4);color:#FF4D00">🔱</div>
+          <div>
+            <h3 class="font-marathi text-white font-bold text-xl mb-2">सांस्कृतिक चळवळ</h3>
+            <p class="font-marathi text-white/60 text-sm leading-relaxed">आपल्या इतिहासाचा अभिमान जागवणारी चळवळ.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── YOUTUBE CHANNEL PANEL ── -->
+  <section class="px-6 pb-20 max-w-7xl mx-auto">
+    <div class="yt-panel p-10 md:p-14 text-center reveal">
+      <!-- Decorative top -->
+      <div class="flex items-center justify-center gap-3 mb-8">
+        <div class="h-px flex-1 max-w-xs" style="background:linear-gradient(90deg,transparent,rgba(255,77,0,0.4))"></div>
+        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background:rgba(255,77,0,0.15);border:1px solid rgba(255,77,0,0.35)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#FF4D00"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="h-px flex-1 max-w-xs" style="background:linear-gradient(90deg,rgba(255,77,0,0.4),transparent)"></div>
+      </div>
+
+      <p class="text-xs tracking-widest uppercase mb-3" style="color:#FF9933">✦ &nbsp; आमचे YouTube चॅनेल &nbsp; ✦</p>
+      <h2 class="font-royal font-bold text-white mb-3" style="font-size:clamp(1.8rem,4vw,3rem)">
+        ShivSahyadri Mahanatya
+      </h2>
+      <p class="font-marathi text-white/55 mb-8 max-w-xl mx-auto" style="line-height:1.9">
+        आमच्या YouTube चॅनेलवर महानाट्याचे भव्य व्हिडिओ, मागील कार्यक्रम आणि विशेष सादरीकरणे पाहा.
+      </p>
+
+      <!-- THE PADDED YOUTUBE BUTTON -->
+      <div class="inline-block p-1.5 rounded-lg" style="background:linear-gradient(135deg,#FF4D00,#FF9933)">
+        <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+           class="flex items-center gap-3 px-10 py-5 rounded-md font-body font-semibold text-lg transition-all duration-300 hover:gap-4"
+           style="background:#0F0F0F;color:#FF9933">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#FF4D00"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span>@SHIVSAHYADRIMAHANATYA</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+      </div>
+
+      <!-- Subscriber nudge -->
+      <p class="mt-5 text-xs tracking-widest" style="color:rgba(255,153,51,0.4)">Subscribe करा आणि सूचना चालू ठेवा 🔔</p>
+    </div>
+  </section>
+
+  <!-- ── VISION SECTION ── -->
+  <section id="vision" class="py-20 px-6" style="background:linear-gradient(180deg,#0F0F0F,#141414,#0F0F0F)">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <p class="text-xs tracking-widest uppercase mb-3" style="color:#FF9933">✦ &nbsp; आमची दृष्टी &nbsp; ✦</p>
+        <h2 class="font-royal text-white font-bold mb-4" style="font-size:clamp(2rem,5vw,3.5rem)">ध्येय व दृष्टिकोन</h2>
+        <div class="h-px w-24 mx-auto" style="background:linear-gradient(90deg,transparent,#FF4D00,transparent)"></div>
+      </div>
+
+      <!-- Vision quote -->
+      <div class="max-w-3xl mx-auto mb-16 reveal">
+        <div class="goal-card text-center py-12 px-8 relative">
+          <div class="absolute top-4 left-6 text-5xl font-royal leading-none" style="color:rgba(255,77,0,0.2)">"</div>
+          <p class="font-marathi text-white/80 relative z-10" style="font-size:1.15rem;line-height:2.1">
+            आमचा विश्वास आहे की, आपला समृद्ध वारसा जतन करून आणि नाट्यकलेच्या प्रभावी माध्यमातून तो सादर करून, आपण नवीन पिढीला प्रेरणा देऊ शकतो व त्यांना आपल्या इतिहासाचे महत्त्व पटवून देऊ शकतो.
+          </p>
+          <div class="absolute bottom-4 right-6 text-5xl font-royal leading-none" style="color:rgba(255,77,0,0.2)">"</div>
+        </div>
+      </div>
+
+      <!-- Goals grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="goal-card reveal delay-1">
+          <div class="text-3xl mb-4">⚔️</div>
+          <h3 class="font-marathi font-bold text-white text-lg mb-3">ऐतिहासिक सादरीकरण</h3>
+          <p class="font-marathi text-white/60 text-sm leading-relaxed">मराठा साम्राज्याचा पराक्रम, शौर्य आणि प्रशासकीय शहाणपण भव्य महानाट्याद्वारे लोकांपर्यंत पोहोचवणे.</p>
+          <div class="absolute top-4 right-5 font-royal text-5xl leading-none" style="color:rgba(255,77,0,0.07)">01</div>
+        </div>
+        <div class="goal-card reveal delay-2">
+          <div class="text-3xl mb-4">🏛️</div>
+          <h3 class="font-marathi font-bold text-white text-lg mb-3">संस्थापकांची संकल्पना</h3>
+          <p class="font-marathi text-white/60 text-sm leading-relaxed">अ‍ॅड. विनय दाभाडे यांच्या इतिहासप्रेमातून आणि सामाजिक बांधिलकीतून संस्थेची स्थापना.</p>
+          <div class="absolute top-4 right-5 font-royal text-5xl leading-none" style="color:rgba(255,77,0,0.07)">02</div>
+        </div>
+        <div class="goal-card reveal delay-3">
+          <div class="text-3xl mb-4">📚</div>
+          <h3 class="font-marathi font-bold text-white text-lg mb-3">शैक्षणिक व प्रेरणादायी</h3>
+          <p class="font-marathi text-white/60 text-sm leading-relaxed">हे केवळ मनोरंजन नसून पुढील पिढीसाठी प्रेरणादायी ठेवा आहे.</p>
+          <div class="absolute top-4 right-5 font-royal text-5xl leading-none" style="color:rgba(255,77,0,0.07)">03</div>
+        </div>
+        <div class="goal-card reveal delay-4">
+          <div class="text-3xl mb-4">🔱</div>
+          <h3 class="font-marathi font-bold text-white text-lg mb-3">सांस्कृतिक चळवळ</h3>
+          <p class="font-marathi text-white/60 text-sm leading-relaxed">ही संस्था नसून आपल्या इतिहासाचा अभिमान जागवणारी चळवळ आहे.</p>
+          <div class="absolute top-4 right-5 font-royal text-5xl leading-none" style="color:rgba(255,77,0,0.07)">04</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALLERY SECTION ── -->
+  <section id="gallery" class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <p class="text-xs tracking-widest uppercase mb-3" style="color:#FF9933">✦ &nbsp; गॅलरी &nbsp; ✦</p>
+      <h2 class="font-royal text-white font-bold mb-4" style="font-size:clamp(2rem,5vw,3.5rem)">छायाचित्रे</h2>
+      <div class="h-px w-24 mx-auto" style="background:linear-gradient(90deg,transparent,#FF4D00,transparent)"></div>
+    </div>
+
+    <!-- Gallery panels with cover image -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <!-- Large panel -->
+      <div class="panel-card reveal col-span-2 md:col-span-2" style="height:320px">
+        <div class="panel-bg" style="background-position:center 30%"></div>
+        <div class="panel-overlay" style="background:linear-gradient(to top,rgba(15,15,15,0.9) 0%,rgba(15,15,15,0.2) 100%)"></div>
+        <div class="relative z-10 p-6 h-full flex flex-col justify-end">
+          <span class="font-marathi text-white font-semibold text-lg">प्रमुख महानाट्य सोहळा</span>
+          <span class="font-body text-white/50 text-sm mt-1">भव्य सादरीकरण</span>
+        </div>
+      </div>
+
+      <!-- Tall panel -->
+      <div class="panel-card reveal row-span-2" style="height:320px;min-height:320px">
+        <div class="panel-bg" style="background-position:70% center"></div>
+        <div class="panel-overlay"></div>
+        <div class="relative z-10 p-5 h-full flex flex-col justify-end">
+          <span class="font-marathi text-white font-semibold">नाट्य प्रयोग</span>
+        </div>
+      </div>
+
+      <!-- Two small panels -->
+      <div class="panel-card reveal" style="height:148px">
+        <div class="panel-bg" style="background-position:30% 70%"></div>
+        <div class="panel-overlay"></div>
+        <div class="relative z-10 p-5 h-full flex flex-col justify-end">
+          <span class="font-marathi text-white text-sm font-semibold">छत्रपती वंदन</span>
+        </div>
+      </div>
+
+      <div class="panel-card reveal delay-1" style="height:148px">
+        <div class="panel-bg" style="background-position:60% 50%"></div>
+        <div class="panel-overlay"></div>
+        <div class="relative z-10 p-5 h-full flex flex-col justify-end">
+          <span class="font-marathi text-white text-sm font-semibold">मराठा शौर्य</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  ── VIDEO SECTION ──
+  <section id="video" class="py-20 px-6" style="background:linear-gradient(180deg,#0F0F0F,#131313)">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <p class="text-xs tracking-widest uppercase mb-3" style="color:#FF9933">✦ &nbsp; व्हिडिओ &nbsp; ✦</p>
+        <h2 class="font-royal text-white font-bold mb-4" style="font-size:clamp(2rem,5vw,3.5rem)">महानाट्य व्हिडिओ</h2>
+        <p class="font-marathi text-white/50 max-w-md mx-auto" style="line-height:1.9">
+          हे व्हिडिओ स्क्रोल करताना आपोआप सुरू होतात. आपण थांबवण्यासाठी Pause दाबा.
+        </p>
+        <div class="h-px w-24 mx-auto mt-6" style="background:linear-gradient(90deg,transparent,#FF4D00,transparent)"></div>
+      </div>
+
+      <!-- VIDEO CARD -->
+      <div class="reveal">
+        <!-- Label -->
+        <div class="flex items-center justify-between mb-4 px-1">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded flex items-center justify-center" style="background:rgba(255,77,0,0.15);border:1px solid rgba(255,77,0,0.35)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#FF4D00"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div>
+              <p class="font-royal text-white font-semibold text-base">शिवसह्याद्री महानाट्य</p>
+              <p class="font-body text-white/45 text-xs">भव्य सांस्कृतिक सादरीकरण</p>
+            </div>
+          </div>
+          <!-- Auto indicator -->
+          <div id="auto-badge" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-body"
+               style="background:rgba(255,77,0,0.15);color:#FF9933;border:1px solid rgba(255,77,0,0.3)">
+            <span id="auto-dot" class="w-1.5 h-1.5 rounded-full" style="background:#FF4D00"></span>
+            <span id="auto-label">Auto</span>
+          </div>
+        </div>
+
+        <!-- 16:9 Video wrapper -->
+        <div class="video-wrap" id="video-wrapper">
+          <video
+            id="main-video"
+            src="SHINSAHYADRI_MAHANATYA_DPGFILMD.mp4"
+            muted
+            playsinline
+            preload="metadata"
+            poster="SHINSAHYADRI_MAHANATYA_DPGFILMD-Cover.jpg"
+          ></video>
+
+          <!-- Custom controls -->
+          <div class="video-controls" id="video-controls">
+            <button class="vc-btn" id="vc-play" onclick="togglePlay()">⏸ Pause</button>
+            <button class="vc-btn" onclick="toggleMute()">🔇 Mute</button>
+
+            <!-- Progress bar -->
+            <div class="vc-progress" id="vc-progress" onclick="seekVideo(event)">
+              <div class="vc-progress-fill" id="vc-fill"></div>
+            </div>
+
+            <span class="vc-time" id="vc-time">0:00</span>
+
+            <button class="vc-btn" onclick="stopVideo()">⏹ थांबवा</button>
+          </div>
+
+          <!-- Paused overlay -->
+          <div id="play-overlay" class="absolute inset-0 flex items-center justify-center cursor-pointer"
+               style="background:rgba(0,0,0,0.35);display:none !important;" onclick="togglePlay()">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center"
+                 style="background:rgba(255,77,0,0.9)">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Below video: manual controls strip -->
+        <div class="mt-4 flex flex-wrap items-center gap-3 px-1">
+          <button onclick="togglePlay()" id="strip-play"
+                  class="btn-bhagwa flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span id="strip-play-label">Play</span>
+          </button>
+
+          <button onclick="toggleMute()" id="strip-mute"
+                  class="btn-outline flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm">
+            <span id="mute-icon">🔊</span>
+            <span id="mute-label">Sound On</span>
+          </button>
+
+          <button onclick="stopVideo()"
+                  class="btn-outline flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm">
+            ⏹ थांबवा
+          </button>
+
+          <div class="ml-auto flex items-center gap-2 text-xs" style="color:rgba(255,255,255,0.35)">
+            <span>Auto-play on scroll</span>
+            <label class="relative inline-block w-9 h-5 cursor-pointer">
+              <input type="checkbox" id="autoplay-toggle" class="opacity-0 w-0 h-0" checked onchange="toggleAutoplay(this)">
+              <span id="toggle-track" class="absolute inset-0 rounded-full transition-colors duration-300" style="background:#FF4D00"></span>
+              <span id="toggle-thumb" class="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white transition-transform duration-300" style="transform:translateX(16px)"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT SECTION ── -->
+  <section id="contact" class="py-20 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <p class="text-xs tracking-widest uppercase mb-3" style="color:#FF9933">✦ &nbsp; संपर्क &nbsp; ✦</p>
+        <h2 class="font-royal text-white font-bold mb-4" style="font-size:clamp(2rem,5vw,3.5rem)">आमच्याशी संपर्क साधा</h2>
+        <div class="h-px w-24 mx-auto" style="background:linear-gradient(90deg,transparent,#FF4D00,transparent)"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Info -->
+        <div class="space-y-4 reveal">
+          <h3 class="font-royal text-xl mb-6" style="color:#FF9933">संपर्क माहिती</h3>
+          <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+             class="flex items-center gap-4 goal-card !p-5 group">
+            <div class="w-10 h-10 border flex items-center justify-center flex-shrink-0 transition-all"
+                 style="border-color:rgba(255,77,0,0.3);color:#FF4D00">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+            <div>
+              <p class="text-white/40 text-xs mb-0.5">YouTube चॅनेल</p>
+              <p class="text-white group-hover:text-saffron transition-colors text-sm font-medium" style="color:#fff">@SHIVSAHYADRIMAHANATYA</p>
+            </div>
+          </a>
+
+          <div class="goal-card !p-5 flex items-center gap-4">
+            <div class="w-10 h-10 border flex items-center justify-center flex-shrink-0"
+                 style="border-color:rgba(255,77,0,0.3);color:#FF4D00">📍</div>
+            <div>
+              <p class="text-white/40 text-xs mb-0.5">स्थान</p>
+              <p class="text-white text-sm font-medium">पुणे, महाराष्ट्र</p>
+            </div>
+          </div>
+
+          <div class="goal-card !p-5 flex items-center gap-4">
+            <div class="w-10 h-10 border flex items-center justify-center flex-shrink-0"
+                 style="border-color:rgba(255,77,0,0.3);color:#FF4D00">👤</div>
+            <div>
+              <p class="text-white/40 text-xs mb-0.5">संस्थापक</p>
+              <p class="text-white text-sm font-medium">अ‍ॅड. विनय दाभाडे</p>
+            </div>
+          </div>
+
+          <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+             class="btn-bhagwa flex items-center justify-center gap-2 w-full px-6 py-4 rounded-sm mt-4">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube वर Subscribe करा
+          </a>
+        </div>
+
+        <!-- Form -->
+        <div class="goal-card !p-8 reveal delay-2">
+          <h3 class="font-royal text-xl text-white mb-6">संदेश पाठवा</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="font-body text-white/45 text-xs block mb-1.5">तुमचे नाव</label>
+              <input type="text" placeholder="नाव प्रविष्ट करा"
+                     class="w-full bg-black/50 text-white text-sm px-4 py-3 rounded-sm outline-none placeholder-white/20 transition-all"
+                     style="border:1px solid rgba(255,77,0,0.18)"
+                     onfocus="this.style.borderColor='rgba(255,77,0,0.5)'"
+                     onblur="this.style.borderColor='rgba(255,77,0,0.18)'" />
+            </div>
+            <div>
+              <label class="font-body text-white/45 text-xs block mb-1.5">ईमेल</label>
+              <input type="email" placeholder="ईमेल प्रविष्ट करा"
+                     class="w-full bg-black/50 text-white text-sm px-4 py-3 rounded-sm outline-none placeholder-white/20 transition-all"
+                     style="border:1px solid rgba(255,77,0,0.18)"
+                     onfocus="this.style.borderColor='rgba(255,77,0,0.5)'"
+                     onblur="this.style.borderColor='rgba(255,77,0,0.18)'" />
+            </div>
+            <div>
+              <label class="font-body text-white/45 text-xs block mb-1.5">संदेश</label>
+              <textarea rows="4" placeholder="तुमचा संदेश..."
+                        class="w-full bg-black/50 text-white text-sm px-4 py-3 rounded-sm outline-none placeholder-white/20 transition-all resize-none"
+                        style="border:1px solid rgba(255,77,0,0.18)"
+                        onfocus="this.style.borderColor='rgba(255,77,0,0.5)'"
+                        onblur="this.style.borderColor='rgba(255,77,0,0.18)'"></textarea>
+            </div>
+            <button class="btn-bhagwa w-full py-3.5 rounded-sm font-body font-semibold">
+              संदेश पाठवा →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="border-t px-6 py-12" style="border-color:rgba(255,77,0,0.12);background:#0A0A0A">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-3 gap-10 mb-10">
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full border-2 flex items-center justify-center" style="border-color:#FF4D00">
+              <span style="color:#FF9933;font-family:'Tiro Devanagari Sanskrit',serif">श</span>
+            </div>
+            <div>
+              <span class="font-royal text-white font-bold block leading-tight">ShivSahyadri Mahanatya</span>
+              <span class="text-xs tracking-widest" style="color:rgba(255,153,51,0.6)">शिवसह्याद्री महानाट्य</span>
+            </div>
+          </div>
+          <p class="font-marathi text-sm" style="color:rgba(255,255,255,0.35);line-height:1.9">मराठा वारसा जतन करणारी सांस्कृतिक चळवळ.</p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-xs tracking-widest uppercase mb-4" style="color:#FF9933">जलद दुवे</h4>
+          <ul class="space-y-2">
+            <li><a href="#about" class="font-marathi text-sm transition-colors" style="color:rgba(255,255,255,0.45)" onmouseover="this.style.color='#FF9933'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">आमच्याबद्दल</a></li>
+            <li><a href="#vision" class="font-marathi text-sm transition-colors" style="color:rgba(255,255,255,0.45)" onmouseover="this.style.color='#FF9933'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">ध्येय व उद्दिष्टे</a></li>
+            <li><a href="#gallery" class="font-marathi text-sm transition-colors" style="color:rgba(255,255,255,0.45)" onmouseover="this.style.color='#FF9933'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">गॅलरी</a></li>
+            <li><a href="#video" class="font-marathi text-sm transition-colors" style="color:rgba(255,255,255,0.45)" onmouseover="this.style.color='#FF9933'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">व्हिडिओ</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <h4 class="text-xs tracking-widest uppercase mb-4" style="color:#FF9933">सामाजिक माध्यमे</h4>
+          <a href="http://www.youtube.com/@SHIVSAHYADRIMAHANATYA" target="_blank"
+             class="inline-flex items-center gap-3 text-sm transition-colors group" style="color:rgba(255,255,255,0.5)">
+            <div class="w-9 h-9 border flex items-center justify-center transition-all group-hover:border-bhagwa"
+                 style="border-color:rgba(255,77,0,0.25)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+            YouTube
+          </a>
+          <div class="mt-6 pt-6 border-t" style="border-color:rgba(255,77,0,0.1)">
+            <p class="text-xs mb-1" style="color:rgba(255,255,255,0.3)">संस्थापक</p>
+            <p class="font-marathi text-sm font-medium" style="color:rgba(255,255,255,0.7)">अ‍ॅड. विनय दाभाडे</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+           style="border-color:rgba(255,77,0,0.08)">
+        <p class="font-body text-xs" style="color:rgba(255,255,255,0.2)">
+          © 2025 ShivSahyadri Mahanatya. सर्व हक्क राखीव.
+        </p>
+        <p class="font-body text-xs tracking-widest uppercase" style="color:rgba(255,77,0,0.3)">
+          जय शिवाजी ✦ जय भवानी
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /site -->
+
+<!-- ══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+/* ─── INTRO PARTICLES ─── */
+(function() {
+  const canvas = document.getElementById('intro-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animId;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const colors = ['#FF4D00','#FF9933','#C9A227','#FF6600'];
+
+  for (let i = 0; i < 70; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 2 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: -(Math.random() * 0.8 + 0.2),
+      opacity: Math.random() * 0.5 + 0.1,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.opacity -= 0.0008;
+      if (p.y < 0 || p.opacity <= 0) {
+        p.x = Math.random() * canvas.width;
+        p.y = canvas.height + 5;
+        p.opacity = Math.random() * 0.5 + 0.1;
+      }
+    });
+    ctx.globalAlpha = 1;
+    animId = requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // Auto-dismiss intro after 6s
+  const skipTimeout = setTimeout(() => skipIntro(), 6500);
+  window._skipTimeout = skipTimeout;
+  window._particleAnimId = animId;
+})();
+
+function skipIntro() {
+  clearTimeout(window._skipTimeout);
+  cancelAnimationFrame(window._particleAnimId);
+  const intro = document.getElementById('intro');
+  const site = document.getElementById('site');
+  intro.classList.add('fade-out');
+  site.classList.add('visible');
+  // Store in session so it doesn't replay
+  sessionStorage.setItem('introSeen', '1');
+  setTimeout(() => { intro.style.display = 'none'; }, 1300);
+  // Start hero canvas
+  startHeroCanvas();
+}
+
+// Skip if already seen
+if (sessionStorage.getItem('introSeen')) {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('site').style.opacity = '1';
+  startHeroCanvas();
+}
+
+/* ─── HERO BG ZOOM ─── */
+window.addEventListener('load', () => {
+  document.getElementById('hero-bg').classList.add('loaded');
+});
+
+/* ─── HERO CANVAS ─── */
+function startHeroCanvas() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  const particles = [];
+  const colors = ['#FF4D00','#FF9933','#C9A227'];
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 45; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 1.8 + 0.3,
+      speedX: (Math.random() - 0.5) * 0.2,
+      speedY: -(Math.random() * 0.5 + 0.1),
+      opacity: Math.random() * 0.4 + 0.05,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.opacity;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.opacity -= 0.0005;
+      if (p.y < 0 || p.opacity <= 0) {
+        p.x = Math.random() * canvas.width;
+        p.y = canvas.height + 5;
+        p.opacity = Math.random() * 0.4 + 0.05;
+      }
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ─── NAVBAR SCROLL ─── */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+/* ─── SCROLL REVEAL ─── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─── VIDEO AUTOPLAY ON SCROLL ─── */
+const video = document.getElementById('main-video');
+const vcFill = document.getElementById('vc-fill');
+const vcTime = document.getElementById('vc-time');
+const vcPlayBtn = document.getElementById('vc-play');
+const stripPlayLabel = document.getElementById('strip-play-label');
+const autoLabel = document.getElementById('auto-label');
+const autoDot = document.getElementById('auto-dot');
+let autoplayEnabled = true;
+let isMuted = true;
+
+function formatTime(s) {
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${sec.toString().padStart(2,'0')}`;
+}
+
+// Update time & progress bar
+video.addEventListener('timeupdate', () => {
+  if (!video.duration) return;
+  const pct = (video.currentTime / video.duration) * 100;
+  vcFill.style.width = pct + '%';
+  vcTime.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+});
+
+// Sync play/pause UI
+video.addEventListener('play', () => {
+  vcPlayBtn.textContent = '⏸ Pause';
+  stripPlayLabel.textContent = 'Pause';
+});
+
+video.addEventListener('pause', () => {
+  vcPlayBtn.textContent = '▶ Play';
+  stripPlayLabel.textContent = 'Play';
+});
+
+// Intersection Observer for video
+const videoObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && autoplayEnabled) {
+      video.play().catch(() => {});
+      autoDot.style.background = '#22c55e';
+      autoLabel.textContent = 'Live';
+    } else if (!e.isIntersecting && !video.paused) {
+      video.pause();
+      autoDot.style.background = '#FF4D00';
+      autoLabel.textContent = 'Auto';
+    }
+  });
+}, { threshold: 0.35 });
+
+videoObserver.observe(video);
+
+function togglePlay() {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+}
+
+function toggleMute() {
+  isMuted = !isMuted;
+  video.muted = isMuted;
+  document.getElementById('mute-icon').textContent = isMuted ? '🔇' : '🔊';
+  document.getElementById('mute-label').textContent = isMuted ? 'Sound Off' : 'Sound On';
+}
+
+function stopVideo() {
+  video.pause();
+  video.currentTime = 0;
+}
+
+function seekVideo(e) {
+  const bar = document.getElementById('vc-progress');
+  const rect = bar.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  video.currentTime = ratio * video.duration;
+}
+
+function toggleAutoplay(checkbox) {
+  autoplayEnabled = checkbox.checked;
+  const track = document.getElementById('toggle-track');
+  const thumb = document.getElementById('toggle-thumb');
+  track.style.background = autoplayEnabled ? '#FF4D00' : '#333';
+  thumb.style.transform = autoplayEnabled ? 'translateX(16px)' : 'translateX(0)';
+  if (!autoplayEnabled) video.pause();
+}
+</script>
+
+</body>
+</html>
